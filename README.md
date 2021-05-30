@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![](https://github.com/QLM69/Project-1/blob/f0b53fa6d7636d60dded6a7f574d86e96aa4e8a2/N.BRAZIL%20PROJECT1.png)
+![](https://github.com/QLM69/Project-1/blob/37beaf17ffca6b85148c184483ab4a8a95facc53/Diagrams/N.BRAZIL%20PROJECT1.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook YAML file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -223,7 +223,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![](https://github.com/QLM69/Project-1/blob/9132f35a4f1ec51e1658911ba5322577876076c7/Untitled%20picture.png)
+![](https://github.com/QLM69/Project-1/blob/37beaf17ffca6b85148c184483ab4a8a95facc53/Diagrams/Docker%20ps.png)
 
 
 ### Target Machines & Beats
