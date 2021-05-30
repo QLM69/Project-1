@@ -261,15 +261,16 @@ SSH into the control node and follow the steps below:
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
 Commands needed to run the Anisble Configuration for the Elk-Server are:
-ssh (admin_user)@(Jump Box Public IP)
-sudo docker container list -a - Locate the ansible container
-sudo docker start gallant_ptolemy(name)
-sudo docker attach gallant_ptolemy(name)
-cd /etc/ansible
-ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
-cd /etc/ansible/
-ansible-playbook (file/metric)beat-playbook.yml (Installs and Configures Filebeat/Metricbeat)
-Open a new browser on Personal Workstation, navigate to (http://{elk-server-ip}:5601/app/kibana)
-
+```
+1.ssh (admin_user)@(Jump Box Public IP)
+2.sudo docker container list -a - Locate the ansible container
+3.sudo docker start gallant_ptolemy(name)
+4.sudo docker attach gallant_ptolemy(name)
+5.cd /etc/ansible
+6.ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
+7.cd /etc/ansible/
+8.ansible-playbook (file/metric)beat-playbook.yml (Installs and Configures Filebeat/Metricbeat)
+9.Open a new browser on Personal Workstation, navigate to (http://{elk-server-ip}:5601/app/kibana)
+```
 References
 Filebeat: Lightweight Log Analysis & Elasticsearch. (n.d.). Retrieved August 22, 2020, from https://www.elastic.co/beats/filebeat Metricbeat: Lightweight Shipper for Metrics. (n.d.). Retrieved August 22, 2020, from https://www.elastic.co/beats/metricbeat
