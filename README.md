@@ -4,10 +4,11 @@ The files in this repository were used to configure the network depicted below.
 
 ![](https://github.com/QLM69/Project-1/blob/f0b53fa6d7636d60dded6a7f574d86e96aa4e8a2/N.BRAZIL%20PROJECT1.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook YAML file may be used to install only certain pieces of it, such as Filebeat.
 
 PLAYBOOK NO.1 PENTEST.YML
-  ---
+```
+---
 - name: Config Web VM with Docker
 hosts: webservers
 become: true
@@ -41,9 +42,11 @@ tasks:
     systemd:
       name: docker
       enabled: yes
+```      
       
 
 PLAYBOOK NO.2 INSTALL-ELK.YML
+```
 ---
 - name: Configure Elk VM with Docker
 hosts: elk
@@ -89,8 +92,10 @@ tasks:
         -  5601:5601
         -  9200:9200
         -  5044:5044
-       
+```
+
 PLAYBOOK NO.3 FILEBEAT-PLAYBOOK.YML
+```
 ---
 - name: installing and launching filebeat
 hosts: webservers
@@ -121,8 +126,10 @@ tasks:
   systemd:
     name: filebeat
     enabled: yes
+```
 
 PLAYBOOK NO.4 METRICBEAT-PLAYBOOK.YML
+```
 - name: Install metric beat
 hosts: webservers
 become: true
@@ -152,7 +159,7 @@ tasks:
   systemd:
     name: metricbeat
     enabled: yes
-
+```
 This document contains the following details:
 - Description of the Topologu
 - Access Policies
@@ -179,8 +186,8 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 |----------------|------------|------------|------------------|
 | Jump Box       | Gateway    | 10.1.0.7   | Linux            |
 | Project1ELK-VM | ELK        | 10.2.0.4   | Linux            |
-| Web-1          | Server     | 10.1.0.5   | Linux            |
-| Web-2          | Server     | 10.1.0.6   | Linux            |
+| Web-1          | DVWA       | 10.1.0.5   | Linux            |
+| Web-2          | DVWA       | 10.1.0.6   | Linux            |
 
 ### Access Policies
 
@@ -238,16 +245,31 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the YAML file to Ansible container.
 - Update the Ansible hosts /etc/ansible/hosts file to include the following:
-
+```
 [webservers]
 10.1.0.5 ansible_python_interpreter=/usr/bin/python3
 10.1.0.6 ansible_python_interpreter=/usr/bin/python3
 
 [elk]
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
-
+```
 -Update the Ansible file /etc/ansible.cfg and set the current to the admin user of the web servers.
 -SSH into the Jump Box by running this command ssh (admin_user)@(Jump Box Public IP)
 -Start Ansible container by running sudo docker start (ansible-container-name)
--Run the playbook by using this command ansible-playbook (name-of-playbook).yml and navigate to ELK-Server-PublicIP:5601/app/kibana to check that the installation worked as expected by checking the Filebeat and Metricbeat
+-Run the playbook by running ansible-playbook (name-of-playbook).yml and navigate to ELK-Server-PublicIP:5601/app/kibana to check that the installation worked as expected by checking the Filebeat and Metricbeat
 
+_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
+Commands needed to run the Anisble Configuration for the Elk-Server are:
+ssh (admin_user)@(Jump Box Public IP)
+sudo docker container list -a - Locate the ansible container
+sudo docker start gallant_ptolemy(name)
+sudo docker attach gallant_ptolemy(name)
+cd /etc/ansible
+ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
+cd /etc/ansible/
+ansible-playbook (file/metric)beat-playbook.yml (Installs and Configures Filebeat/Metricbeat)
+Open a new browser on Personal Workstation, navigate to (http://{elk-server-ip}:5601/app/kibana)
+
+References
+Filebeat: Lightweight Log Analysis & Elasticsearch. (n.d.). Retrieved August 22, 2020, from https://www.elastic.co/beats/filebeat Metricbeat: Lightweight Shipper for Metrics. (n.d.). Retrieved August 22, 2020, from https://www.elastic.co/beats/metricbeat
