@@ -253,11 +253,12 @@ SSH into the control node and follow the steps below:
 [elk]
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
+```
 -Update the Ansible file /etc/ansible.cfg and set the current to the admin user of the web servers.
 -SSH into the Jump Box by running this command ssh (admin_user)@(Jump Box Public IP)
 -Start Ansible container by running sudo docker start (ansible-container-name)
 -Run the playbook by running ansible-playbook (name-of-playbook).yml and navigate to ELK-Server-PublicIP:5601/app/kibana to check that the installation worked as expected by checking the Filebeat and Metricbeat
-
+```
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
 Commands needed to run the Anisble Configuration for the Elk-Server are:
